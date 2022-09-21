@@ -41,5 +41,23 @@ DELETE FROM items WHERE item_number=5;
 SELECT * FROM items;
 INSERT INTO items(item_name,course_type,price_item) VALUES ("Yoghurt", "dessert", "6");
 SELECT * FROM items;
+CREATE TABLE orders(
+o_id INT UNIQUE NOT NULL AUTO_INCREMENT,
+customer_id INT NOT NULL,
+total_price DECIMAL (6,2),
+PRIMARY KEY (o_id),
+FOREIGN KEY (customer_id) references customers (customer_id));
+
+CREATE TABLE order_items(
+o_id INT UNIQUE NOT NULL AUTO_INCREMENT,
+order_id INT NOT NULL,
+item_number INT NOT NULL,
+quantity INT,
+PRIMARY KEY (o_id),
+FOREIGN KEY (order_id) references orders (o_id),
+FOREIGN KEY (item_number) references items (item_number));
+
+SHOW TABLES;
+
 
 
